@@ -38,16 +38,16 @@ import (
 
 	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/apimachinery/pkg/util/wait"
-	utilfeature "k8s.io/apiserver/pkg/util/feature"
+	//utilfeature "k8s.io/apiserver/pkg/util/feature" NOTE[jigish] usused because commented out stuff
 	"k8s.io/component-base/cli/globalflag"
 	"k8s.io/component-base/logs"
-	_ "k8s.io/component-base/metrics/prometheus/clientgo" // for client metric registration
-	_ "k8s.io/component-base/metrics/prometheus/version"  // for version metric registration
 	"k8s.io/klog"
 	"k8s.io/kubernetes/cmd/cloud-controller-manager/app"
 	"k8s.io/kubernetes/cmd/cloud-controller-manager/app/options"
-	"k8s.io/kubernetes/pkg/features" // add the kubernetes feature gates
+	//"k8s.io/kubernetes/pkg/features" // add the kubernetes feature gates  NOTE[jigish] usused because commented out stuff
 	utilflag "k8s.io/kubernetes/pkg/util/flag"
+	_ "k8s.io/kubernetes/pkg/util/prometheusclientgo" // load all the prometheus client-go plugins
+	_ "k8s.io/kubernetes/pkg/version/prometheus"      // for version metric registration
 	"k8s.io/legacy-cloud-providers/aws"
 	netutils "k8s.io/utils/net"
 
@@ -143,17 +143,13 @@ func newControllerInitializers() map[string]initFunc {
 
 func startCloudNodeController(ctx *cloudcontrollerconfig.CompletedConfig, cloud cloudprovider.Interface, stopCh <-chan struct{}) (http.Handler, bool, error) {
 	// Start the CloudNodeController
-	nodeController, err := cloudcontrollers.NewCloudNodeController(
+	nodeController := cloudcontrollers.NewCloudNodeController(
 		ctx.SharedInformers.Core().V1().Nodes(),
 		// cloud node controller uses existing cluster role from node-controller
 		ctx.ClientBuilder.ClientOrDie("node-controller"),
 		cloud,
 		ctx.ComponentConfig.NodeStatusUpdateFrequency.Duration,
 	)
-	if err != nil {
-		klog.Warningf("failed to start cloud node controller: %s", err)
-		return nil, false, nil
-	}
 
 	go nodeController.Run(stopCh)
 
@@ -199,6 +195,7 @@ func startServiceController(ctx *cloudcontrollerconfig.CompletedConfig, cloud cl
 	return nil, true, nil
 }
 
+// NOTE[jigish] i've ripped this apart because we don't start route controllers in titus and there were errors
 func startRouteController(ctx *cloudcontrollerconfig.CompletedConfig, cloud cloudprovider.Interface, stopCh <-chan struct{}) (http.Handler, bool, error) {
 	if !ctx.ComponentConfig.KubeCloudShared.AllocateNodeCIDRs || !ctx.ComponentConfig.KubeCloudShared.ConfigureCloudRoutes {
 		klog.Infof("Will not configure cloud provider routes for allocate-node-cidrs: %v, configure-cloud-routes: %v.", ctx.ComponentConfig.KubeCloudShared.AllocateNodeCIDRs, ctx.ComponentConfig.KubeCloudShared.ConfigureCloudRoutes)
@@ -219,9 +216,10 @@ func startRouteController(ctx *cloudcontrollerconfig.CompletedConfig, cloud clou
 	}
 
 	// failure: more than one cidr and dual stack is not enabled
-	if len(clusterCIDRs) > 1 && !utilfeature.DefaultFeatureGate.Enabled(features.IPv6DualStack) {
-		return nil, false, fmt.Errorf("len of ClusterCIDRs==%v and dualstack feature is not enabled", len(clusterCIDRs))
-	}
+	// NOTE[jigish] commented out because issues
+	//if len(clusterCIDRs) > 1 && !utilfeature.DefaultFeatureGate.Enabled(features.IPv6DualStack) {
+	//return nil, false, fmt.Errorf("len of ClusterCIDRs==%v and dualstack feature is not enabled", len(clusterCIDRs))
+	//}
 
 	// failure: more than one cidr but they are not configured as dual stack
 	if len(clusterCIDRs) > 1 && !dualStack {
@@ -229,7 +227,7 @@ func startRouteController(ctx *cloudcontrollerconfig.CompletedConfig, cloud clou
 	}
 
 	// failure: more than two cidrs is not allowed even with dual stack
-	if len(clusterCIDRs) > 2 {
+	if len(clusterCIDRs) > 1 { // NOTE[jigish] changed to 1 because issues
 		return nil, false, fmt.Errorf("length of clusterCIDRs is:%v more than max allowed of 2", len(clusterCIDRs))
 	}
 
@@ -238,7 +236,7 @@ func startRouteController(ctx *cloudcontrollerconfig.CompletedConfig, cloud clou
 		ctx.ClientBuilder.ClientOrDie("route-controller"),
 		ctx.SharedInformers.Core().V1().Nodes(),
 		ctx.ComponentConfig.KubeCloudShared.ClusterName,
-		clusterCIDRs,
+		clusterCIDRs[0], // NOTE[jigish] changed to [0] because issues
 	)
 	go routeController.Run(stopCh, ctx.ComponentConfig.KubeCloudShared.RouteReconciliationPeriod.Duration)
 
