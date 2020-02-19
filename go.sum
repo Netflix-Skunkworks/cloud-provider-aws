@@ -33,6 +33,8 @@ github.com/Netflix-Skunkworks/legacy-cloud-providers v0.0.0-20200218230100-fab7d
 github.com/Netflix-Skunkworks/legacy-cloud-providers v0.0.0-20200218230100-fab7d27552d3/go.mod h1:CQf+5lDQk/abK+N/fTW2zb/QEQBI3x8YluF4sFSHSf4=
 github.com/Netflix-Skunkworks/legacy-cloud-providers v0.0.0-20200218231715-8ceb7673e720 h1:0UwlHUDaOc+KvXAawhQq6KH1NKDiP9b9c0KYbHUCwuE=
 github.com/Netflix-Skunkworks/legacy-cloud-providers v0.0.0-20200218231715-8ceb7673e720/go.mod h1:CQf+5lDQk/abK+N/fTW2zb/QEQBI3x8YluF4sFSHSf4=
+github.com/Netflix-Skunkworks/legacy-cloud-providers v0.0.0-20200219015511-09b42c7000ab h1:kD23AO2FdusPFGMY2oMuFcUNoGjgBLtW93qgG7D+7Mo=
+github.com/Netflix-Skunkworks/legacy-cloud-providers v0.0.0-20200219015511-09b42c7000ab/go.mod h1:CQf+5lDQk/abK+N/fTW2zb/QEQBI3x8YluF4sFSHSf4=
 github.com/OpenPeeDeeP/depguard v1.0.0/go.mod h1:7/4sitnI9YlQgTLLk734QlzXT8DuHVnAyztLplQjk+o=
 github.com/OpenPeeDeeP/depguard v1.0.1/go.mod h1:xsIw86fROiiwelg+jB2uM9PiKihMMmUx/1V+TNhjQvM=
 github.com/PuerkitoBio/purell v1.0.0/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=

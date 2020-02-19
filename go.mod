@@ -23,7 +23,7 @@ replace (
 	k8s.io/kube-scheduler => k8s.io/kubernetes/staging/src/k8s.io/kube-scheduler v0.0.0-20190816181610-c2be2fc9124c
 	k8s.io/kubectl => k8s.io/kubernetes/staging/src/k8s.io/kubectl v0.0.0-20190816181610-c2be2fc9124c
 	k8s.io/kubelet => k8s.io/kubernetes/staging/src/k8s.io/kubelet v0.0.0-20190816181610-c2be2fc9124c
-	k8s.io/legacy-cloud-providers => github.com/Netflix-Skunkworks/legacy-cloud-providers v0.0.0-20200218231715-8ceb7673e720
+	k8s.io/legacy-cloud-providers => github.com/Netflix-Skunkworks/legacy-cloud-providers v0.0.0-20200219015511-09b42c7000ab
 	k8s.io/metrics => k8s.io/kubernetes/staging/src/k8s.io/metrics v0.0.0-20190816181610-c2be2fc9124c
 	k8s.io/node-api => k8s.io/kubernetes/staging/src/k8s.io/node-api v0.0.0-20190816181610-c2be2fc9124c
 	k8s.io/sample-apiserver => k8s.io/kubernetes/staging/src/k8s.io/sample-apiserver v0.0.0-20190816181610-c2be2fc9124c
