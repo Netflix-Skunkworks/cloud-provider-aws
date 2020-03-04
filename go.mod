@@ -23,7 +23,7 @@ replace (
 	k8s.io/kube-scheduler => k8s.io/kubernetes/staging/src/k8s.io/kube-scheduler v0.0.0-20200118001809-59603c6e503c
 	k8s.io/kubectl => k8s.io/kubernetes/staging/src/k8s.io/kubectl v0.0.0-20200118001809-59603c6e503c
 	k8s.io/kubelet => k8s.io/kubernetes/staging/src/k8s.io/kubelet v0.0.0-20200118001809-59603c6e503c
-	k8s.io/legacy-cloud-providers => k8s.io/kubernetes/staging/src/k8s.io/legacy-cloud-providers v0.0.0-20200118001809-59603c6e503c
+	k8s.io/legacy-cloud-providers => github.com/Netflix-Skunkworks/legacy-cloud-providers v0.17.4-0.20200304202821-94389e020a3c
 	k8s.io/metrics => k8s.io/kubernetes/staging/src/k8s.io/metrics v0.0.0-20200118001809-59603c6e503c
 	k8s.io/node-api => k8s.io/kubernetes/staging/src/k8s.io/node-api v0.0.0-20200118001809-59603c6e503c
 	k8s.io/sample-apiserver => k8s.io/kubernetes/staging/src/k8s.io/sample-apiserver v0.0.0-20200118001809-59603c6e503c
@@ -31,10 +31,10 @@ replace (
 
 require (
 	github.com/spf13/cobra v0.0.5
-	k8s.io/apimachinery v0.0.0
-	k8s.io/apiserver v0.0.0
-	k8s.io/cloud-provider v0.0.0
-	k8s.io/component-base v0.0.0
+	k8s.io/apimachinery v0.17.3
+	k8s.io/apiserver v0.17.3
+	k8s.io/cloud-provider v0.17.3
+	k8s.io/component-base v0.17.3
 	k8s.io/klog v1.0.0
 	k8s.io/kubernetes v1.17.2
 	k8s.io/legacy-cloud-providers v0.0.0
