@@ -26,6 +26,7 @@ github.com/NYTimes/gziphandler v0.0.0-20170623195520-56545f4a5d46 h1:lsxEuwrXEAo
 github.com/NYTimes/gziphandler v0.0.0-20170623195520-56545f4a5d46/go.mod h1:3wb06e3pkSAbeQ52E9H9iFoQsEEwGN64994WTCIhntQ=
 github.com/Netflix-Skunkworks/legacy-cloud-providers v0.17.4-0.20200304202821-94389e020a3c h1:FGCHfnrpQ6xVEvt4ES1DxLSVUBjgZ8z0miC6ZYsQjhQ=
 github.com/Netflix-Skunkworks/legacy-cloud-providers v0.17.4-0.20200304202821-94389e020a3c/go.mod h1:ujZML5v8efVQxiXXTG+nck7SjP8KhMRjUYNIsoSkYI0=
+github.com/Netflix-Skunkworks/legacy-cloud-providers v0.17.4-0.20200311003623-c9a90ebb381e/go.mod h1:ujZML5v8efVQxiXXTG+nck7SjP8KhMRjUYNIsoSkYI0=
 github.com/OpenPeeDeeP/depguard v1.0.0/go.mod h1:7/4sitnI9YlQgTLLk734QlzXT8DuHVnAyztLplQjk+o=
 github.com/OpenPeeDeeP/depguard v1.0.1/go.mod h1:xsIw86fROiiwelg+jB2uM9PiKihMMmUx/1V+TNhjQvM=
 github.com/PuerkitoBio/purell v1.0.0/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=
